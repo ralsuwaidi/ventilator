@@ -77,7 +77,7 @@ Item {
                     max: root.maxY
                     minorTickCount: 1
                     tickCount: 3
-
+                    titleText: "cmH20"
                 }
                 axisX: ValueAxis {
                     id: axisXs
