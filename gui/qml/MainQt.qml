@@ -3,12 +3,12 @@ import QtQuick.Window 2.1
 
 Window {
     visible: true
-    width: 800
-    height: 480
-    visibility: fs?"FullScreen":"Windowed"
-    title: qsTr("Hello World")
+    width: 1280
+    height: 800
+    visibility: fs ? "FullScreen" : "Windowed"
+    title: qsTr("DFF Vent")
 
-    MainGo{
+    MainGo {
 
     }
 

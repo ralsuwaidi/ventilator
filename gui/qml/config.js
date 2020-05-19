@@ -11,7 +11,7 @@ var color_grey = "#bdbebf"
 var window_width = 800
 var window_height = 480
 
-var sidebar_width = 150
+var sidebar_width = 200
 var sidebar_height = window_height
 var sidebar_livetext_size1 = 26
 var sidebar_livetext_size2 = 16

@@ -10,7 +10,6 @@ import QtQuick.Controls 2.1
 
 Item {
     id: sidebar
-    width: Config.sidebar_height
     property int currentView: 0
     // patient information when first started
     Component.onCompleted: {
@@ -30,6 +29,8 @@ Item {
         menulist.model.get(3).class_name = "dark"
     }
     signal openMonitor()
+    width: 300
+    height: 800
     onOpenMonitor: {
         currentView = 0
         menulist.model.get(0).class_name = "light"
@@ -126,26 +127,12 @@ Item {
 
         SwipeView {
             id: view
+            anchors.topMargin: 38
             anchors.bottom: iconrow.top
             anchors.top: menulistcolumn.bottom
             anchors.right: parent.right
             anchors.left: parent.left
-
             currentIndex: 0
-            Component.onCompleted: {
-                baranimation.start()
-                baranimation2.stop()
-            }
-
-            onCurrentIndexChanged: {
-                if (currentIndex === 0) {
-                    baranimation.start()
-                    baranimation2.stop()
-                } else {
-                    baranimation2.start()
-                    baranimation.stop()
-                }
-            }
 
 
             Item {
@@ -159,87 +146,20 @@ Item {
                     anchors.top: menulistcolumn.bottom
                 }
 
-
-                Rectangle {
-                    id: swiper
-                    property int bounce: 0
-                    x: view.currentIndex === 0 ? 140 : 155
-                    y: 70
-                    width: 3
-                    height: 150
-                    color: "#ffffff"
-                    radius: 1.5
-                    border.width: 0
-
-                    SequentialAnimation on x {
-                        id: baranimation
-                        loops: Animation.Infinite
-                        PauseAnimation {
-                            duration: 2000
-                        }
-
-                        // Move from minHeight to maxHeight in 300ms, using the OutExpo easing function
-                        NumberAnimation {
-                            from: 140
-                            to: 135
-                            easing.type: Easing.OutExpo;duration: 500
-                        }
-
-
-                        // Then move back to minHeight in 1 second, using the OutBounce easing function
-                        NumberAnimation {
-                            from: 135
-                            to: 140
-                            easing.type: Easing.OutBounce;duration: 1000
-                        }
-
-                        // Then pause for 500ms
-                        PauseAnimation {
-                            duration: 10000
-                        }
-                    }
-
-                    SequentialAnimation on x {
-                        id: baranimation2
-                        loops: Animation.Infinite
-                        PauseAnimation {
-                            duration: 10000
-                        }
-                        NumberAnimation {
-                            from: 155
-                            to: 160
-                            easing.type: Easing.OutExpo;duration: 500
-                        }
-
-                        // Then move back to minHeight in 1 second, using the OutBounce easing function
-                        NumberAnimation {
-                            from: 160
-                            to: 155
-                            easing.type: Easing.OutBounce;duration: 1000
-                        }
-
-                        // Then pause for 500ms
-                        PauseAnimation {
-                            duration: 10000
-                        }
-                    }
-                }
-
-
-
-
-            }
-            Item {
-                id: secondPage
-                visible: view.currentIndex === 1 ? true : false
                 LiveSetData {
                     id: liveSetData
-                    anchors.bottom: iconrow.top
+                    anchors.topMargin: 289
+                    anchors.top: liveData.bottom
+                    anchors.bottom: parent.bottom
                     anchors.left: parent.left
                     anchors.leftMargin: 0
                     anchors.right: parent.right
-                    anchors.top: menulistcolumn.bottom
                 }
+
+
+
+
+
             }
         }
 
@@ -275,12 +195,28 @@ Item {
                 font.pixelSize: 12
             }
         }
+
+        Text {
+            id: element
+            x: 15
+            y: 176
+            color: "#e8e8e8"
+            text: qsTr("Live Data")
+            font.bold: true
+            font.pixelSize: 12
+        }
+
+        Text {
+            id: element1
+            x: 15
+            y: 495
+            color: "#e8e8e8"
+            text: qsTr("Set Data")
+            font.bold: true
+            font.pixelSize: 12
+        }
     }
 
 }
 
-/*##^##
-Designer {
-    D{i:0;formeditorZoom:1.25}
-}
-##^##*/
+
