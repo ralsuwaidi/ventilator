@@ -52,7 +52,7 @@ Item {
                     anchors.fill: parent
                     onPresetClicked: {
                         sidebar.openTab()
-                        viewmodeview.presetClicked()
+                        viewmodeview.presetClicked(mode)
 
                     }
                 }

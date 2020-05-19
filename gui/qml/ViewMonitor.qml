@@ -7,7 +7,7 @@ import "./material/qml/material"
 
 Item {
     id: root
-    signal presetClicked()
+    signal presetClicked(string mode)
     anchors.fill: parent
 
 
@@ -144,7 +144,7 @@ Item {
 
         ViewMonitorPreset {
             anchors.fill: parent
-            onClicked: root.presetClicked()
+            onClicked: root.presetClicked(mode)
 
         }
     }
