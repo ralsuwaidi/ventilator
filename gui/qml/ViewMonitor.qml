@@ -14,7 +14,7 @@ Item {
 
     Rectangle {
         id: chartsarea
-        height: parent.height * 2 / 3
+        height: parent.height * 3 / 4
         color: "#ffffff"
         anchors.top: parent.top
         anchors.topMargin: 0
@@ -56,7 +56,7 @@ Item {
             anchors.rightMargin: (chartsarea.width - 277) / 2
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 8
-            spacing: 15
+            spacing: 25
 
             MouseArea {
                 id: pressurema
@@ -73,6 +73,7 @@ Item {
 
                 Text {
                     text: "Pressure"
+                    font.pointSize: 12
                     font.bold: chart1.active ? true : false
                     color: chart1.active ? "blue" : "black"
                     anchors.fill: parent
@@ -96,6 +97,7 @@ Item {
 
                 Text {
                     text: "Volume"
+                    font.pointSize: 12
                     verticalAlignment: Text.AlignVCenter
                     font.bold: chart2.active ? true : false
                     color: chart2.active ? "blue" : "black"
@@ -119,6 +121,7 @@ Item {
 
                 Text {
                     text: "Flow"
+                    font.pointSize: 12
                     font.bold: chart3.active ? true : false
                     color: chart3.active ? "blue" : "black"
                     verticalAlignment: Text.AlignVCenter

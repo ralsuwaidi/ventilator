@@ -43,7 +43,9 @@ Item {
 
         RowLayout {
             id: moderow
-            y: 10
+            y: 141
+            width: 1030
+            height: 139
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 20
             anchors.leftMargin: 10
@@ -57,7 +59,7 @@ Item {
                 property string breath: "-"
                 property string trigger: "-"
                 color: "#ffffff"
-                Layout.preferredHeight: 120
+                Layout.preferredHeight: 150
                 Layout.preferredWidth: 194
                 Card {
                     id: card1
@@ -146,7 +148,7 @@ Item {
                 id: preset2
                 property bool active: false
                 color: "#ffffff"
-                Layout.preferredHeight: 120
+                Layout.preferredHeight: 150
                 Layout.preferredWidth: 194
                 Card {
                     id: card
@@ -229,7 +231,7 @@ Item {
                 id: preset3
                 property bool active: false
                 color: "#ffffff"
-                Layout.preferredHeight: 120
+                Layout.preferredHeight: 150
                 Layout.preferredWidth: 194
                 Card {
                     id: card2
@@ -308,7 +310,7 @@ Item {
                 id: preset4
                 property bool active: false
                 color: "#ffffff"
-                Layout.preferredHeight: 120
+                Layout.preferredHeight: 150
                 Layout.preferredWidth: 194
                 Card {
                     anchors.fill: parent
@@ -386,7 +388,7 @@ Item {
                 id: preset5
                 property bool active: false
                 color: "#ffffff"
-                Layout.preferredHeight: 120
+                Layout.preferredHeight: 150
                 Layout.preferredWidth: 194
                 Card {
                     anchors.fill: parent
@@ -469,6 +471,6 @@ Designer {
     D{i:0;formeditorZoom:0.8999999761581421}D{i:6;anchors_x:45}D{i:16;anchors_x:45}D{i:21;anchors_width:193;anchors_x:"-69"}
 D{i:20;anchors_x:70}D{i:26;anchors_x:45}D{i:27;anchors_width:193;anchors_x:"-69"}
 D{i:32;anchors_x:70}D{i:33;anchors_height:200;anchors_width:193;anchors_x:"-69";anchors_y:170}
-D{i:2;anchors_x:8}
+D{i:2;anchors_height:139;anchors_x:8;anchors_y:141}
 }
 ##^##*/
