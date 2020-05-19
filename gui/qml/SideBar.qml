@@ -11,12 +11,12 @@ import QtQuick.Controls 2.1
 Item {
     id: sidebar
     property int currentView: 0
-    // patient information when first started
+    // monitor when first started
     Component.onCompleted: {
-        currentView = 2
-        menulist.model.get(0).class_name = "dark"
+        currentView = 0
+        menulist.model.get(0).class_name = "light"
         menulist.model.get(1).class_name = "dark"
-        menulist.model.get(2).class_name = "light"
+        menulist.model.get(2).class_name = "dark"
         menulist.model.get(3).class_name = "dark"
         ModeSelect.modeSelected.connect(sidebar.openMonitor)
     }
