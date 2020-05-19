@@ -136,6 +136,8 @@ Item {
                 Text {
                     id: status1
                     color: "#ffffff"
+                    font.capitalization: Font.AllUppercase
+                    font.bold: true
                     text: qsTr("Text")
                     font.pixelSize: 18
                 }
