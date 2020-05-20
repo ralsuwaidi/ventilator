@@ -97,7 +97,7 @@ Item {
                 BaseRadioGroup {
                     id: er
                     width: 500
-                    height: 100
+                    height: 60
                     name: ""
                     anchors.horizontalCenterOffset: 20
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -140,7 +140,7 @@ Item {
                     id: buttonSubmit
                     width: 110
                     height: 38
-                    color: Config.color_dark
+                    color: Config.color_primary
                     anchors.horizontalCenter: parent.horizontalCenter
                     MouseArea {
                         anchors.fill: parent

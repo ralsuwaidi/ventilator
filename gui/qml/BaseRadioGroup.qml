@@ -13,7 +13,7 @@ Item {
     Rectangle {
         id: rectangle
         width: 490
-        height: 60
+        height: 43
         color: "#ffffff"
 
         ButtonGroup {
@@ -25,13 +25,6 @@ Item {
             anchors.left: parent.left
             anchors.leftMargin: 0
             anchors.right: parent.right
-
-            Text {
-                id: ieratiotitle
-                text: root.name
-                font.pixelSize: 16
-                font.family: "Open Sans"
-            }
 
             Row {
                 Layout.fillWidth: true
@@ -68,10 +61,10 @@ Item {
 
                     contentItem: Text {
                         text: control.text
+                        font.pointSize: 15
                         anchors.left: parent.left
                         anchors.leftMargin: 32
                         horizontalAlignment: Text.AlignLeft
-                        font: control.font
                         opacity: enabled ? 1.0 : 0.3
                         verticalAlignment: Text.AlignVCenter
                     }
@@ -105,10 +98,10 @@ Item {
 
                     contentItem: Text {
                         text: "1:2"
+                        font.pointSize: 15
                         anchors.left: parent.left
                         anchors.leftMargin: 32
                         horizontalAlignment: Text.AlignLeft
-                        font: control2.font
                         opacity: enabled ? 1.0 : 0.3
                         verticalAlignment: Text.AlignVCenter
                     }
@@ -139,11 +132,11 @@ Item {
                     }
                     contentItem: Text {
                         text: "1:3"
+                        font.pointSize: 15
                         verticalAlignment: Text.AlignVCenter
                         anchors.left: parent.left
                         opacity: enabled ? 1.0 : 0.3
                         horizontalAlignment: Text.AlignLeft
-                        font: control3.font
                         anchors.leftMargin: 32
                     }
                 }
@@ -174,11 +167,11 @@ Item {
                     }
                     contentItem: Text {
                         text: control4.text
+                        font.pointSize: 15
                         verticalAlignment: Text.AlignVCenter
                         anchors.left: parent.left
                         opacity: enabled ? 1.0 : 0.3
                         horizontalAlignment: Text.AlignLeft
-                        font: control4.font
                         anchors.leftMargin: 32
                     }
                 }

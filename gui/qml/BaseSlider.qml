@@ -23,7 +23,7 @@ Item {
 
     Rectangle {
         id: rectangle
-        width: slider.width+120
+        width: slider.width+140
         height: slider.height+50
         color: "#ffffff"
 
@@ -49,7 +49,7 @@ Item {
                 width: slider.availableWidth
                 height: implicitHeight
                 color: "#bdbebf"
-                radius: 2
+                radius: 1
                 implicitHeight: 4
                 implicitWidth: 200
 
@@ -65,12 +65,10 @@ Item {
             // color
             handle: Rectangle {
                 x: slider.leftPadding + slider.visualPosition * (slider.availableWidth - width)
-                y: slider.topPadding + slider.availableHeight / 2 - height / 2
-                color: slider.pressed ? "#f0f0f0" : "#f6f6f6"
-                radius: 13
+                y: (slider.topPadding + slider.availableHeight / 2 - height / 2)+7
+                color: Config.color_primary
                 implicitHeight: 18
-                border.color: "#bdbebf"
-                implicitWidth: 18
+                implicitWidth: 10
             }
 
 
@@ -86,52 +84,62 @@ Item {
 
             // max value
             Text {
-                x: 375
+                x: 400
                 y: 7
                 color:root.active?"black":"grey"
                 text: slider.to
-                font.pixelSize: 12
+                anchors.verticalCenterOffset: 0
+                anchors.verticalCenter: parent.verticalCenter
+                font.pixelSize: 18
             }
 
             // minimum value
             Text {
                 id: min3
-                x: -25
+                x: -43
                 y: 7
                 width: 26
-                height: 17
+                height: 23
                 color:root.active?"black":"grey"
                 text: slider.from
+                anchors.verticalCenterOffset: 2
+                anchors.verticalCenter: parent.verticalCenter
                 horizontalAlignment: Text.AlignRight
-                font.pixelSize: 12
+                font.pixelSize: 18
             }
 
             // minus button
             MouseArea {
                 id: ma3
-                x: -59
+                x: -100
                 y: 0
                 width: 40
                 height: 30
+                anchors.verticalCenterOffset: 2
+                anchors.verticalCenter: parent.verticalCenter
                 onClicked: {
                     slider.value=slider.value-slider.stepSize
                 }
                 Text {
                     id: minus2
-                    color: root.active?Config.color_dark:"grey"
+                    color: root.active?Config.color_primary:"grey"
                     text: "\uf068"
+                    anchors.rightMargin: 0
+                    anchors.bottomMargin: 0
+                    anchors.leftMargin: 0
+                    anchors.topMargin: 0
                     
                     anchors.fill: parent
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
-                    font.pixelSize: 18
+                    font.pixelSize: 24
                 }
             }
 
             // plus button
             MouseArea {
                 id: ma4
-                x: 395
+                x: 451
                 y: 0
                 width: 40
                 height: 30
@@ -140,13 +148,13 @@ Item {
                 }
                 Text {
                     id: plus2
-                    color: root.active?Config.color_dark:"grey"
+                    color: root.active?Config.color_primary:"grey"
                     text: "\uf067"
                     
                     anchors.fill: parent
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
-                    font.pixelSize: 18
+                    font.pixelSize: 24
                 }
             }
         }
@@ -155,6 +163,6 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:2}D{i:2;anchors_height:30;anchors_width:369}
+    D{i:0;formeditorZoom:1.25}D{i:9;anchors_x:-59}D{i:2;anchors_height:30;anchors_width:369}
 }
 ##^##*/

@@ -98,7 +98,7 @@ Item {
                     id: er
                     name: ""
                     width: 500
-                    height: 100
+                    height: 60
                     anchors.horizontalCenterOffset: 20
                     anchors.horizontalCenter: parent.horizontalCenter
 
