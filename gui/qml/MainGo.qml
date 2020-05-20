@@ -16,6 +16,7 @@ Item {
     Component.onCompleted: {
         AlarmManager.alarmStatus.connect(root.alarm)
     }
+
     onAlarm: {
         if (status !== "none") {
             alarm.visible = true

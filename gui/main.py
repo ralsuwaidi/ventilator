@@ -40,22 +40,28 @@ def main():
 
     app = QtWidgets.QApplication(sys.argv)
 
+    # class instance
     chartManager1 = ChartManager1()
     chartManager2 = ChartManager2()
     chartManager3 = ChartManager3()
-
-    app.aboutToQuit.connect(chartManager1.stop)
-    app.aboutToQuit.connect(chartManager2.stop)
-    app.aboutToQuit.connect(chartManager3.stop)
-
-    chartManager1.start()
-
     alarmManager = AlarmManager()
-    alarmManager.start()
     # patient = Patient()
     userInput = UserInput()
     modeSelect = ms.ModeSelect()
+
+    # connect signal
+    app.aboutToQuit.connect(chartManager1.stop)
+    app.aboutToQuit.connect(chartManager2.stop)
+    app.aboutToQuit.connect(chartManager3.stop)
+    app.aboutToQuit.connect(modeSelect.stop)
+    app.aboutToQuit.connect(alarmManager.stop)
+
     dp = 0
+
+    # start thread
+    chartManager1.start()
+    modeSelect.start()
+    alarmManager.start()
 
     engine = QtQml.QQmlApplicationEngine()
     ctx = engine.rootContext()

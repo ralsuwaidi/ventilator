@@ -12,6 +12,10 @@ Item {
     id: sidebar
     width: Config.sidebar_height
     property int currentView: 0
+    signal liveData(var data)
+    signal openMonitor()
+    signal openTab()
+
     // patient information when first started
     Component.onCompleted: {
         currentView = 2
@@ -20,8 +24,8 @@ Item {
         menulist.model.get(2).class_name = "light"
         menulist.model.get(3).class_name = "dark"
         ModeSelect.modeSelected.connect(sidebar.openMonitor)
+        ModeSelect.liveData.connect(sidebar.liveData)
     }
-    signal openTab()
     onOpenTab: {
         currentView = 1
         menulist.model.get(0).class_name = "dark"
@@ -29,13 +33,16 @@ Item {
         menulist.model.get(2).class_name = "dark"
         menulist.model.get(3).class_name = "dark"
     }
-    signal openMonitor()
     onOpenMonitor: {
         currentView = 0
         menulist.model.get(0).class_name = "light"
         menulist.model.get(1).class_name = "dark"
         menulist.model.get(2).class_name = "dark"
         menulist.model.get(3).class_name = "dark"
+    }
+    onLiveData: {
+        liveData.pip = data.pressure
+        liveData.vt = data.volume
     }
 
     Rectangle {

@@ -19,10 +19,13 @@ if useredis:
 
 
 class ModeSelect(QtCore.QObject):
+
     # signal when mode is selected
     modeSelected = QtCore.Signal(str, name='modeSelected')
     # stop ventilation signal
     stopVent = QtCore.Signal(name='stopVent')
+    # live data
+    liveData = QtCore.Signal('QVariant', name='liveData')
 
     def __init__(self, parent=None):
         super(ModeSelect, self).__init__(parent)
@@ -130,15 +133,28 @@ class ModeSelect(QtCore.QObject):
         logging.debug(f'Input {mystring} set: {myint}')
         self.modeSelected.emit(self._currMode)
 
+    def stop(self):
+        self._goOn = False
+        # checks threader, if still alive, stays inside till dead
+        if self._threader is not None:
+            while self._threader.isRunning():
+                time.sleep(0.1)
+
     def start(self):
         self._threader = Threader(self.core, self)
         self._threader.start()
 
     def core(self):
-        while self._goOn:
-            # sends signal and then waits for delay
-            # print("on thread")
-            time.sleep(self._delay)
+        if config.useredis:
+            while self._goOn:
+                # sends signal and then waits for delay
+                data = {
+                    "pressure": config.r.get("pressure"),
+                    "volume": float(config.r.get("volume"))*1000
+                }
+                self.liveData.emit(data)
+                print("on thread")
+                time.sleep(self._delay)
 
 # -------------------------------------------------
 
