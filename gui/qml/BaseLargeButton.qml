@@ -3,14 +3,13 @@ import QtQuick.Controls 2.0
 import "./config.js"
 as Config
 
-Item {
+Rectangle {
     id: root
     width: rectangle.width
     height: rectangle.height
-    // property bool active: false
     property string title: "Volume A/C"
-    property string info: "In Development"
     property bool active: false
+    property bool disabled : false
     signal clicked()
 
 
@@ -20,20 +19,31 @@ Item {
         y: 0
         width: 233
         height: 74
-        color: "#ffffff"
+        color: {
+            if (!root.disabled){
+            root.active?"green":Config.color_inactive
+            }else{
+                Config.color_disabled
+            }
+        }
         radius: 10
-        border.color: root.active ? Config.color_primary : "#8e8e8e"
 
         Text {
-            color: root.active ? "#000000" : "grey"
+            color: {
+                if (!root.disabled){
+                root.active?"white":"black"}
+                else{
+                    "white"
+                }
+
+                }
             text: root.title
-            font.bold: true
-            anchors.rightMargin: 0
+            verticalAlignment: Text.AlignVCenter
+            anchors.bottom: parent.bottom
+            font.bold: false
             anchors.top: parent.top
-            anchors.topMargin: 10
-            horizontalAlignment: Text.AlignLeft
+            horizontalAlignment: Text.AlignHCenter
             anchors.left: parent.left
-            anchors.leftMargin: 15
             anchors.right: parent.right
             font.pixelSize: 16
         }
@@ -45,26 +55,10 @@ Item {
             anchors.bottom: parent.bottom
             anchors.top: parent.top
             onClicked: {
-                // if (root.active) {
-                root.clicked()
-                // }
-            }
-        }
 
-        Text {
-            id: element1
-            height: 17
-            color: "#535353"
-            text: root.info
-            anchors.rightMargin: 5
-            wrapMode: Text.WordWrap
-            anchors.right: parent.right
-            anchors.leftMargin: 15
-            anchors.topMargin: 34
-            anchors.top: parent.top
-            font.pixelSize: 10
-            horizontalAlignment: Text.AlignLeft
-            anchors.left: parent.left
+                root.clicked()
+
+            }
         }
 
     }

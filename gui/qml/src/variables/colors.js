@@ -8,5 +8,5 @@ var color = {
     energized: "#f0b840",
     assertive: "#ef4e3a",
     royal: "#8a6de9",
-    dark: "#444"
+    dark: "black"
 }

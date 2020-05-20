@@ -29,7 +29,7 @@ Item{
         Text {
             id: titletext
             x: 33
-            color: "#6c6c6c"
+            color: "#000000"
             text: root.title
             anchors.top: parent.top
             anchors.topMargin: 0

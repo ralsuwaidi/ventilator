@@ -57,18 +57,20 @@ Item {
 
     Rectangle {
         id: chartsarea
-        color: "#ffffff"
+        color: "#000000"
         anchors.fill: parent
 
         ChartView {
             id: chartview
+            backgroundColor: "black"
+            theme: ChartView.ChartThemeDark
             anchors.fill: parent
             antialiasing: true
             legend.visible: false
 
             SplineSeries {
                 id: series1
-                color: "#5677fc"
+                color: "#02fe00"
                 name: "LineSeries"
                 width: 1.5
 
@@ -85,32 +87,20 @@ Item {
                     id: axisXs
                     min: 0
                     max: root.limit
-                    tickCount: 2
+                    tickCount: 10
                 }
 
             }
 
             SplineSeries {
                 id: series2
-                color: "#5677fc"
+                color: "#02fe00"
                 name: "LineSeries"
                 width: 1.5
 
-                axisY: ValueAxis {
-                    id: axisY2
-                    min: root.minY
-                    max: root.maxY
-                    minorTickCount: 1
-                    tickCount: 3
-                    visible: false
-                }
-                axisX: ValueAxis {
-                    id: axisXs2
-                    min: 0
-                    max: root.limit
-                    tickCount: 2
-                    visible: false
-                }
+                axisY: axisY
+                axisX: axisX
+
 
             }
         }

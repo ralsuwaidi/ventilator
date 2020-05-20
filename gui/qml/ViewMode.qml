@@ -7,9 +7,10 @@ as Config
 import "."
 
 Item {
-    id: name
-    width: 650
-    height: 480
+    id: root
+    width: 1000
+    height: 800
+    property string activeMode
     signal presetClicked(string mode)
     onPresetClicked: {
         if (mode === "Pressure A/C") {
@@ -26,7 +27,7 @@ Item {
     signal stop()
 
     Component.onCompleted: {
-        ModeSelect.stopVent.connect(name.stop)
+        ModeSelect.stopVent.connect(root.stop)
     }
 
     onStop: {
@@ -55,84 +56,96 @@ Item {
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.left: parent.horizontalCenter
 
-            Text {
-                id: element1
-                x: -237
-                y: -112
-                color: "#a8a8a8"
-                text: qsTr("Volume")
-                font.pixelSize: 18
-                font.bold: true
+            RowLayout {
             }
 
-            Text {
-                id: element
+            GridLayout {
                 x: -237
-                y: 9
-                color: "#a8a8a8"
-                text: qsTr("Pressure")
-                font.bold: true
-                font.pixelSize: 18
-            }
+                y: -56
+                anchors.horizontalCenterOffset: 0
+                anchors.horizontalCenter: parent.horizontalCenter
+                columnSpacing: 40
+                rowSpacing: 20
+                rows: 5
+                columns: 2
 
-            BaseLargeButton {
-                id: volumeac4
-                x: -237
-                y: 118
-                info: "Pressure Support ventilation mode is indicated for active patients only"
-                title: "Pressure Support"
-                onClicked: {
-                    console.log("not active")
+                Text {
+                    id: element1
+                    color: "#000000"
+                    text: qsTr("Volume Controlled (adaptive)")
+                    Layout.preferredHeight: 50
+                    Layout.columnSpan: 2
+                    Layout.rowSpan: 1
+                    font.pixelSize: 18
+                    font.bold: true
                 }
-            }
 
-            BaseLargeButton {
-                id: volumeac3
-                x: 12
-                y: 38
-                info: "Pressure control breaths at the set SIMV rate. Pressure/Flow trigger to assisted breath"
-                title: "Pressure SIMV"
-                onClicked: {
-                    console.log("not active")
+                BaseLargeButton {
+                    id: vacbutton
+                    width: 233
+                    active: root.activeMode==="Volume A/C"?true:false
+                    title: "Assist/Control"
+                    onClicked: {
+                        //                    modePage.visible = false
+                        //                    modePAC.visible = false
+                        //                    modeVAC.visible = true
+                        root.activeMode = "Volume A/C"
+                    }
                 }
-            }
 
-            BaseLargeButton {
-                id: volumeac2
-                x: -237
-                y: 38
-                active: true
-                title: "Pressure A/C"
-                info: "Suitable for passive, partially active and active patients with weak respiratory drive"
-                onClicked: {
-                    modePage.visible = false
-                    modePAC.visible = true
-                    modeVAC.visible = false
+                BaseLargeButton {
+                    id: volumeac1
+                    title: "SIMV"
+                    disabled: true
+                    onClicked: {
+                        console.log("not active")
+                    }
                 }
-            }
 
-            BaseLargeButton {
-                id: volumeac1
-                x: 12
-                y: -80
-                title: "Volume SIMV"
-                info: "Volume control breaths at the set SIMV rate. Pressure/Flow trigger to assisted breath"
-                onClicked: {
-                    console.log("not active")
+                Text {
+                    id: pacbutton
+                    color: "#040000"
+                    text: qsTr("Pressure Controlled (biphasic)")
+                    Layout.preferredHeight: 50
+                    Layout.columnSpan: 2
+                    font.bold: true
+                    font.pixelSize: 18
                 }
-            }
 
-            BaseLargeButton {
-                id: volumeac
-                x: -237
-                y: -80
-                active: true
-                title: "Volume A/C"
-                info: "Intended for patients who are passive or partially active"
-                onClicked: {
-                    modePage.visible = false
-                    modePAC.visible = false
-                    modeVAC.visible = true
+                BaseLargeButton {
+                    id: volumeac2
+                    active: root.activeMode==="Pressure A/C"?true:false
+                    title: "Assist/Control"
+                    onClicked: {
+                        //                    modePage.visible = false
+                        //                    modePAC.visible = true
+                        //                    modeVAC.visible = false
+                        root.activeMode = "Pressure A/C"
+                    }
+                }
+
+                BaseLargeButton {
+                    id: volumeac3
+                    disabled: true
+                    title: "SIMV"
+                    onClicked: {
+                        console.log("not active")
+                    }
+                }
+
+                BaseLargeButton {
+                    id: volumeac4
+                    disabled: true
+                    title: "Support"
+                    onClicked: {
+                        console.log("not active")
+                    }
+                }
+
+                Item {
+                    id: spacer2
+                    Layout.preferredHeight: 14
+                    Layout.preferredWidth: 14
                 }
             }
         }
@@ -159,10 +172,36 @@ Item {
                 modePAC.visible = false
                 modeVAC.visible = false
                 modePage.visible = true
+                root.activeMode=""
             }
-
             visible: !modePage.visible
 
+        }
+    }
+
+    Button {
+        id: continueButton
+        x: 396
+        y: 438
+        width: 208
+        height: 62
+        text: qsTr("Continue")
+        visible: modePage.visible
+        anchors.bottomMargin: 50
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: parent.bottom
+        onClicked: {
+
+            if (root.activeMode==="Pressure A/C"){
+                modePage.visible = false
+                modePAC.visible = true
+                modeVAC.visible = false
+
+            } else if (root.activeMode==="Volume A/C"){
+                modePage.visible = false
+                modePAC.visible = false
+                modeVAC.visible = true
+            }
         }
     }
 }
@@ -171,6 +210,6 @@ Item {
 
 /*##^##
 Designer {
-    D{i:1;anchors_height:300;anchors_width:300;anchors_x:88;anchors_y:128}
+    D{i:0;formeditorZoom:0.6600000262260437}D{i:1;anchors_height:300;anchors_width:300;anchors_x:88;anchors_y:128}
 }
 ##^##*/

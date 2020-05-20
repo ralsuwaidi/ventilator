@@ -42,7 +42,7 @@ Item {
     Rectangle {
         id: sidebarrectangle
         width: Config.sidebar_width
-        color: Config.bg_color
+        color: "#040000"
         anchors.bottom: parent.bottom
         anchors.left: parent.left
         anchors.top: parent.top
@@ -125,42 +125,39 @@ Item {
         }
 
 
-        SwipeView {
+        Item {
             id: view
-            anchors.topMargin: 38
+            anchors.topMargin: 0
             anchors.bottom: iconrow.top
             anchors.top: menulistcolumn.bottom
             anchors.right: parent.right
             anchors.left: parent.left
-            currentIndex: 0
 
+            ColumnLayout{
+                anchors.fill: parent
 
-            Item {
-                id: firstPage
-                LiveData {
-                    id: liveData
-                    anchors.bottom: iconrow.top
-                    anchors.left: parent.left
-                    anchors.leftMargin: 0
-                    anchors.right: parent.right
-                    anchors.top: menulistcolumn.bottom
+                SidebarData {
+                    id: sidebarData1
                 }
 
-                LiveSetData {
-                    id: liveSetData
-                    anchors.topMargin: 289
-                    anchors.top: liveData.bottom
-                    anchors.bottom: parent.bottom
-                    anchors.left: parent.left
-                    anchors.leftMargin: 0
-                    anchors.right: parent.right
+                SidebarData {
+                    id: sidebarData
                 }
 
+                SidebarData {
+                    id: sidebarData2
+                }
 
+                SidebarData {
+                    id: sidebarData3
+                }
 
-
-
+                SidebarData {
+                    id: sidebarData4
+                }
             }
+
+
         }
 
 
@@ -194,26 +191,6 @@ Item {
                 text: "\uf043"
                 font.pixelSize: 12
             }
-        }
-
-        Text {
-            id: element
-            x: 15
-            y: 176
-            color: "#e8e8e8"
-            text: qsTr("Live Data")
-            font.bold: true
-            font.pixelSize: 12
-        }
-
-        Text {
-            id: element1
-            x: 15
-            y: 495
-            color: "#e8e8e8"
-            text: qsTr("Set Data")
-            font.bold: true
-            font.pixelSize: 12
         }
     }
 

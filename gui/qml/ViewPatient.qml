@@ -96,7 +96,7 @@ Item {
 
                     Text {
                         id: element32
-                        color: "#6c6c6c"
+                        color: "#000000"
                         text: qsTr("Gender")
                         font.pixelSize: 24
                     }

@@ -185,52 +185,8 @@ Item {
         
         
         
-        Column {
-            id: column1
-            width: Config.sidebar_width / 2
-            Layout.fillHeight: false
-            Layout.fillWidth: false
-            Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-            
-            Text {
-                id: piptext
-                color: "#ffffff"
-                text: monitorrow.pip
-                anchors.left: parent.left
-                anchors.leftMargin: 0
-                anchors.right: parent.right
-                Layout.fillWidth: true
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignHCenter
-                font.pixelSize: Config.sidebar_livetext_size1
-            }
-            
-            Text {
-                id: element2
-                color: "#ffffff"
-                text: qsTr("PIP")
-                anchors.left: parent.left
-                anchors.leftMargin: 0
-                anchors.right: parent.right
-                Layout.fillWidth: true
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignHCenter
-                styleColor: "#ffffff"
-                font.pixelSize: Config.sidebar_livetext_size2
-            }
-            
-            Text {
-                id: element3
-                color: "#f9f9f9"
-                text: qsTr("cmH2O")
-                anchors.right: parent.right
-                anchors.left: parent.left
-                anchors.leftMargin: 0
-                Layout.fillWidth: true
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignHCenter
-                font.pixelSize: Config.sidebar_livetext_size3
-            }
+        SidebarData {
+            id: sidebarData
         }
         
         Column {
