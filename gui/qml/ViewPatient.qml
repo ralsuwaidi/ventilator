@@ -202,6 +202,10 @@ Item {
             ColumnLayout {
                 spacing: 30
 
+                BaseActivity {
+                    id: baseActivity
+                }
+
                 BasePSlider {
                     id: basePSlider4
                     Layout.preferredHeight: 115
@@ -209,18 +213,6 @@ Item {
                     minText: ""
                     title: "Weight (KG)"
                     val: 80
-                    minVal: 0
-                    maxText: ""
-                    maxVal: 300
-                }
-
-                BasePSlider {
-                    id: basePSlider3
-                    Layout.preferredHeight: 115
-                    Layout.preferredWidth: 387
-                    title: "Height (cm)"
-                    minText: ""
-                    val: 180
                     minVal: 0
                     maxText: ""
                     maxVal: 300
@@ -237,6 +229,7 @@ Item {
                     maxText: "Increased"
                     maxVal: 100
                 }
+
             }
         }
 
