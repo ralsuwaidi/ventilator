@@ -34,7 +34,7 @@ Item {
         id: mainview
         color: "#ffffff"
         anchors.left: sidebar.right
-        anchors.right: parent.right
+        anchors.right: sideBarRight.left
         anchors.bottom: parent.bottom
         anchors.top: parent.top
 
@@ -49,6 +49,7 @@ Item {
 
 
                 ViewMonitor {
+                    id: viewMonitor
                     anchors.fill: parent
                     onPresetClicked: {
                         sidebar.openTab()
@@ -89,7 +90,7 @@ Item {
             height: 46
             anchors.rightMargin: 20
             anchors.right: parent.right
-            source: "assets/DFL-LOGO-B.png"
+            source: "assets/DFL-LOGO-W.jpg"
             fillMode: Image.PreserveAspectFit
         }
     }
@@ -109,6 +110,12 @@ Item {
         id: webFont;source: "./src/variables/fontawesome-webfont.ttf"
     }
 
+    SideBarRight {
+        id: sideBarRight
+        x: 1169
+        y: 0
+    }
+
     Rectangle {
         id: alarm
         x: 327
@@ -116,6 +123,8 @@ Item {
         width: 200
         height: 200
         color: "#d10000"
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.horizontalCenter: parent.horizontalCenter
         visible: false
 
         RowLayout {
@@ -177,10 +186,13 @@ Item {
 
 
 
+
 }
 
 /*##^##
 Designer {
-    D{i:0;autoSize:true;height:480;width:640}D{i:1;anchors_width:150}D{i:14;anchors_height:400;anchors_width:200}
+    D{i:0;formeditorZoom:2}D{i:1;anchors_width:150}D{i:17;anchors_x:46}D{i:18;anchors_x:44}
+D{i:19;anchors_x:44}D{i:16;anchors_height:60;anchors_x:0;anchors_y:0}D{i:15;anchors_width:200;anchors_x:8}
+D{i:14;anchors_height:400;anchors_width:200}
 }
 ##^##*/

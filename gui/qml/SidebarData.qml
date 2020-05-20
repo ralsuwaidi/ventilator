@@ -13,9 +13,9 @@ Item {
     id: root
     anchors.right: parent.right
     anchors.left: parent.left
-    height:100
+    height:rectangle.height
     property double value: 0
-    property string backgroundColor:"black"
+    property string backgroundColor:Config.col_dark_grey
     property string title:"_title"
     property string units:"_units"
     property double max:50.0
@@ -25,27 +25,30 @@ Item {
     Rectangle {
         id: rectangle
         color: root.backgroundColor
-        anchors.fill: parent
+        anchors.left: parent.left
+        anchors.leftMargin: 0
+        anchors.right: parent.right
+        height: maindata.height+10
 
         ColumnLayout {
-            x: 235
+            id: maindata
+            x: 594
+            y: 10
+            anchors.verticalCenter: parent.verticalCenter
             spacing: 0
             anchors.right: parent.right
-            anchors.rightMargin: 10
-            anchors.top: parent.top
-            anchors.topMargin: 0
+            anchors.rightMargin: 8
 
             Text {
                 id: value
                 height: 60
                 text: root.value
-                Layout.preferredHeight: 50
+                Layout.preferredHeight: 60
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignRight
                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-                Layout.preferredWidth: 32
                 color:"white"
-                font.pixelSize: 60
+                font.pixelSize: 70
             }
 
             Text {
@@ -69,9 +72,9 @@ Item {
 
         ColumnLayout {
             anchors.left: parent.left
-            anchors.leftMargin: 10
-            anchors.top: parent.top
-            anchors.topMargin: 10
+            anchors.leftMargin: 8
+            anchors.top: maindata.top
+            anchors.topMargin: 0
 
             Text {
                 id: maximum

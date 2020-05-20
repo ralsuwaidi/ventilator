@@ -7,6 +7,7 @@ var color_dark = "#007ac1"
 var color_inactive = "#BEBEBE"
 var color_grey = "#bdbebf"
 var color_disabled = "#E8E8E8"
+var col_dark_grey = "#232323"
 
 // sizes
 var window_width = 800

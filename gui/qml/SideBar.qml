@@ -127,33 +127,61 @@ Item {
 
         Item {
             id: view
+            anchors.bottomMargin: 10
+            anchors.bottom: rectangle.top
             anchors.topMargin: 0
-            anchors.bottom: iconrow.top
             anchors.top: menulistcolumn.bottom
             anchors.right: parent.right
             anchors.left: parent.left
 
-            ColumnLayout{
-                anchors.fill: parent
+            Column{
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: 0
+                anchors.top: parent.top
+                anchors.right: parent.right
+                anchors.left: parent.left
+                spacing: 6
 
                 SidebarData {
                     id: sidebarData1
+                    min: 5
+                    max: 40
+                    units: "cmH2O"
+                    title: "Ppeak"
+                    value: 19
                 }
 
                 SidebarData {
                     id: sidebarData
+                    max: 0
+                    title: "Pmean"
+                    units: "cmH2O"
+                    value: 11
                 }
 
                 SidebarData {
                     id: sidebarData2
+                    units: "l/min"
+                    title: "ExpMinVol"
+                    value: 7.5
                 }
 
                 SidebarData {
                     id: sidebarData3
+                    max: 750
+                    min: 250
+                    title: "VTE"
+                    units: "ml"
+                    value: 500
                 }
 
                 SidebarData {
                     id: sidebarData4
+                    max: 23
+                    min: 8
+                    title: "Rate"
+                    units: "b/min"
+                    value: 20
                 }
             }
 
@@ -161,39 +189,49 @@ Item {
         }
 
 
-        RowLayout {
-            id: iconrow
-            y: 438
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 20
-            anchors.leftMargin: 15
-            anchors.right: parent.right
+        Rectangle {
+            id: rectangle
+            height: 45
+            color: Config.col_dark_grey
+            anchors.bottomMargin: 5
+            anchors.bottom: sideBarIcons.top
             anchors.left: parent.left
+            anchors.leftMargin: 0
+            anchors.right: parent.right
+            anchors.rightMargin: 0
 
             Text {
-                id: element17
-                color: "#ffffff"
-                text: "\uf015"
-                font.pixelSize: 12
-                font.family: webFont.name
-            }
-
-            Text {
-                id: element18
-                color: "#ffffff"
-                text: "\uf06a"
-                font.pixelSize: 12
-            }
-
-            Text {
-                id: element19
-                color: "#ffffff"
-                text: "\uf043"
-                font.pixelSize: 12
+                id: element
+                height: 50
+                color: "white"
+                text: qsTr("VAC")
+                font.bold: true
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                anchors.fill: parent
+                font.pixelSize: 30
             }
         }
+
+        SideBarIcons {
+            id: sideBarIcons
+            y: 778
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 5
+            anchors.right: parent.right
+            anchors.left: parent.left
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
+
     }
 
 }
 
 
+
+/*##^##
+Designer {
+    D{i:0;height:800;width:200}D{i:18;anchors_y:778}D{i:17;anchors_height:200;anchors_width:200}
+D{i:19;anchors_y:778}
+}
+##^##*/

@@ -10,7 +10,10 @@ as Config
 import "."
 
 Item {
-    id: rightBarData
+    id: root
+    property string title: "_title"
+    property string units: "_units"
+    property int value: 0
     height: 51
     anchors.right: parent.right
     anchors.left: parent.left
@@ -22,7 +25,7 @@ Item {
         Text {
             id: element1
             color: "#ffffff"
-            text: qsTr("20")
+            text: root.value
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
@@ -32,7 +35,7 @@ Item {
         Text {
             id: element2
             color: "#e4e4e4"
-            text: qsTr("b/min")
+            text: root.units
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
@@ -42,7 +45,7 @@ Item {
         Text {
             id: element3
             color: "#e4e4e4"
-            text: qsTr("Rate")
+            text: root.title
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
