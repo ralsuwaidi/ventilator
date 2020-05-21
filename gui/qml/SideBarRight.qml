@@ -20,7 +20,7 @@ Rectangle {
     Column {
         id: column
         y: 74
-        height: 326
+        height: 528
         anchors.verticalCenter: parent.verticalCenter
         spacing: 40
         anchors.left: parent.left
