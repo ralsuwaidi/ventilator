@@ -23,6 +23,7 @@ class ModeSelect(QtCore.QObject):
     modeSelected = QtCore.Signal(str, name='modeSelected')
     # stop ventilation signal
     stopVent = QtCore.Signal(name='stopVent')
+    liveData = QtCore.Signal('QVariant', name='liveData')
 
     def __init__(self, parent=None):
         super(ModeSelect, self).__init__(parent)
@@ -31,7 +32,7 @@ class ModeSelect(QtCore.QObject):
         self._currTrigger = ""
         self._status = ""
         self._threader = None
-        self._delay = 1
+        self._delay = 1.5
         self._goOn = True
         self._pip = {"name": "PIP", "value": 3}
 
@@ -135,10 +136,24 @@ class ModeSelect(QtCore.QObject):
         self._threader.start()
 
     def core(self):
-        while self._goOn:
-            # sends signal and then waits for delay
-            # print("on thread")
-            time.sleep(self._delay)
+        if config.useredis:
+            while self._goOn:
+                # sends signal and then waits for delay
+                data = {
+                    "ppeak": 19,
+                    "pmean": 11,
+                    "expminvol": 7.5,
+                    "vte": 500,
+                    "rate": 20,
+                    "r1": 20,
+                    "r2": 60,
+                    "r3": 5,
+                    "r4": 60,
+
+                }
+                self.liveData.emit(data)
+                print("on thread")
+                time.sleep(self._delay)
 
 # -------------------------------------------------
 

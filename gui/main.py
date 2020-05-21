@@ -57,6 +57,7 @@ def main():
     # patient = Patient()
     userInput = UserInput()
     modeSelect = ms.ModeSelect()
+    modeSelect.start()
     dp = 0
 
     engine = QtQml.QQmlApplicationEngine()

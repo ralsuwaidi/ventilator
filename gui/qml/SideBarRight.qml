@@ -16,6 +16,15 @@ Rectangle {
     anchors.right: parent.right
     anchors.bottom: parent.bottom
     anchors.top: parent.top
+    signal liveData(var data)
+    Component.onCompleted: ModeSelect.liveData.connect(sideBarRight.liveData)
+    onLiveData: {
+        r1.value = data.r1
+        r2.value = data.r2
+        r3.value = data.r3
+        r4.value = data.r4
+
+    }
     
     Column {
         id: column
@@ -29,7 +38,7 @@ Rectangle {
         
         
         RightBarData {
-            id: rightBarData
+            id: r1
             title: "Rate"
             units: "b/min"
             value: 20
@@ -38,7 +47,7 @@ Rectangle {
         }
         
         RightBarData {
-            id: rightBarData1
+            id: r2
             title: "%MinVol"
             value: 50
             units: "%"
@@ -47,7 +56,7 @@ Rectangle {
         }
         
         RightBarData {
-            id: rightBarData2
+            id: r3
             value: 5
             title: "PEEP/PCAP"
             units: "cmH2O"
@@ -56,7 +65,7 @@ Rectangle {
         }
         
         RightBarData {
-            id: rightBarData3
+            id: r4
             title: "Oxygen"
             units: "%"
             value: 60

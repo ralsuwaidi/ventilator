@@ -24,8 +24,8 @@ Item {
         ModeSelect.modeSelected.connect(sidebar.startVentilation)
         ModeSelect.stopVent.connect(sidebar.stopVentilation)
     }
-    onStartVentilation:ModeSelect.mode==="Pressure A/C"?modeText.text="PAC":modeText.text="VAC"
-    onStopVentilation: modeText.text="---"
+    onStartVentilation: ModeSelect.mode === "Pressure A/C" ? modeText.text = "PAC" : modeText.text = "VAC"
+    onStopVentilation: modeText.text = "---"
     signal openTab()
     onOpenTab: {
         currentView = 1
@@ -139,8 +139,19 @@ Item {
             anchors.top: menulistcolumn.bottom
             anchors.right: parent.right
             anchors.left: parent.left
+            signal liveData(var data)
+            Component.onCompleted: ModeSelect.liveData.connect(view.liveData)
+            onLiveData: {
+                ppeak.value = data.ppeak
+                pmean.value = data.pmean
+                expminvol.value = data.expminvol
+                vte.value = data.vte
+                rate.value = data.rate
 
-            Column{
+            }
+
+
+            Column {
                 anchors.bottom: parent.bottom
                 anchors.bottomMargin: 0
                 anchors.top: parent.top
@@ -149,7 +160,7 @@ Item {
                 spacing: 6
 
                 SidebarData {
-                    id: sidebarData1
+                    id: ppeak
                     min: 5
                     max: 40
                     units: "cmH2O"
@@ -158,22 +169,22 @@ Item {
                 }
 
                 SidebarData {
-                    id: sidebarData
-                    max: 0
+                    id: pmean
+                    max: 15
                     title: "Pmean"
                     units: "cmH2O"
                     value: 11
                 }
 
                 SidebarData {
-                    id: sidebarData2
+                    id: expminvol
                     units: "l/min"
                     title: "ExpMinVol"
                     value: 7.5
                 }
 
                 SidebarData {
-                    id: sidebarData3
+                    id: vte
                     max: 750
                     min: 250
                     title: "VTE"
@@ -182,7 +193,7 @@ Item {
                 }
 
                 SidebarData {
-                    id: sidebarData4
+                    id: rate
                     max: 23
                     min: 8
                     title: "Rate"
