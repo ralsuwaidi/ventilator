@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
+import QtMultimedia 5.10
 import "./config.js"
 as Config
 
@@ -135,6 +136,10 @@ Item {
                     maxVal: 20
                     anchors.horizontalCenter: parent.horizontalCenter
                 }
+                Audio {
+                    id: playMusic
+                    source: "./assets/done.mp3"
+                }
 
                 Rectangle {
                     id: buttonSubmit
@@ -157,6 +162,7 @@ Item {
                             ModeSelect.sendInt("PEEP", peep.value)
                             ModeSelect.sendInt("ER", er.value)
                             ModeSelect.startVentilation()
+                            playMusic.play()
                         }
                     }
 

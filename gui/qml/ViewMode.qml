@@ -6,6 +6,7 @@ import "./config.js"
 as Config
 import "."
 
+
 Item {
     id: root
     width: 1000

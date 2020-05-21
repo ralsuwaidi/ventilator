@@ -151,7 +151,6 @@ Item {
                     MouseArea {
                         anchors.fill: parent
                         onReleased: {
-                            playMusic.play()
                             ModeSelect.sendString("Mode", "Pressure A/C")
                             ModeSelect.mode = "Pressure A/C"
                             ModeSelect.sendString("BreathType", root.triggerType === "Time" ? "Pressure Control" : "Pressure Assist")
@@ -164,6 +163,7 @@ Item {
                             ModeSelect.sendInt("PEEP", peep.value)
                             ModeSelect.sendInt("ER", er.value)
                             ModeSelect.startVentilation()
+                            playMusic.play()
                         }
                     }
 

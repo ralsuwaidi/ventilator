@@ -8,6 +8,7 @@ import "./material/qml/material"
 import "./config.js"
 as Config
 import "."
+import QtMultimedia 5.10
 
 Item {
     id: root
@@ -30,6 +31,11 @@ Item {
     }
     onStartVentilation: {
         stopButton.visible=true
+    }
+
+    Audio {
+        id: playMusic
+        source: "./assets/done.mp3"
     }
 
     Rectangle {
@@ -84,6 +90,7 @@ Item {
                         onClicked: {
                             stopButton.visible=false
                             ModeSelect.stopVentilation()
+                            playMusic.play()
                         }
                     }
                 }
