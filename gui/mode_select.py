@@ -103,6 +103,7 @@ class ModeSelect(QtCore.QObject):
     @QtCore.Slot()
     def startVentilation(self):
         self.status = "start"
+        self.modeSelected.emit(self._currMode)
         logging.warning("Starting Ventilation")
         if useredis:
             r.mset({"status": self._status})
@@ -128,7 +129,6 @@ class ModeSelect(QtCore.QObject):
             r.mset({"PARAMS": paramsdump})
 
         logging.debug(f'Input {mystring} set: {myint}')
-        self.modeSelected.emit(self._currMode)
 
     def start(self):
         self._threader = Threader(self.core, self)

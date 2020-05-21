@@ -11,6 +11,8 @@ import QtQuick.Controls 2.1
 Item {
     id: sidebar
     property int currentView: 0
+    signal startVentilation()
+    signal stopVentilation()
     // monitor when first started
     Component.onCompleted: {
         currentView = 0
@@ -19,7 +21,11 @@ Item {
         menulist.model.get(2).class_name = "dark"
         menulist.model.get(3).class_name = "dark"
         ModeSelect.modeSelected.connect(sidebar.openMonitor)
+        ModeSelect.modeSelected.connect(sidebar.startVentilation)
+        ModeSelect.stopVent.connect(sidebar.stopVentilation)
     }
+    onStartVentilation:ModeSelect.mode==="Pressure A/C"?modeText.text="PAC":modeText.text="VAC"
+    onStopVentilation: modeText.text="---"
     signal openTab()
     onOpenTab: {
         currentView = 1
@@ -201,10 +207,10 @@ Item {
             anchors.rightMargin: 0
 
             Text {
-                id: element
+                id: modeText
                 height: 50
                 color: "white"
-                text: qsTr("VAC")
+                text: "---"
                 font.bold: true
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter

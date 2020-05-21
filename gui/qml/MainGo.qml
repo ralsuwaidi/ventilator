@@ -15,8 +15,10 @@ Item {
     signal alarm(string status)
     width: 1280
     height: 800
+    signal startVentilation()
     Component.onCompleted: {
         AlarmManager.alarmStatus.connect(root.alarm)
+        ModeSelect.modeSelected.connect(root.startVentilation)
     }
     onAlarm: {
         if (status !== "none") {
@@ -28,7 +30,9 @@ Item {
         title1.text = AlarmManager.title
         info1.text = AlarmManager.info
     }
-
+    onStartVentilation: {
+        stopButton.visible=true
+    }
 
     Rectangle {
         id: mainview
@@ -55,6 +59,34 @@ Item {
                         sidebar.openTab()
                         viewmodeview.presetClicked(mode)
 
+                    }
+                }
+
+                Rectangle {
+                    id: stopButton
+                    width: 200
+                    height: 41
+                    color: "#ef2929"
+                    visible: false
+
+                    Text {
+                        id: element
+                        color: "#ffffff"
+                        text: qsTr("STOP")
+                        font.bold: true
+                        verticalAlignment: Text.AlignVCenter
+                        horizontalAlignment: Text.AlignHCenter
+                        anchors.fill: parent
+                        font.pixelSize: 28
+                    }
+
+                    MouseArea {
+                        id: mouseArea
+                        anchors.fill: parent
+                        onClicked: {
+                            stopButton.visible=false
+                            ModeSelect.stopVentilation()
+                        }
                     }
                 }
             }
@@ -191,8 +223,8 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:2}D{i:1;anchors_width:150}D{i:17;anchors_x:46}D{i:18;anchors_x:44}
-D{i:19;anchors_x:44}D{i:16;anchors_height:60;anchors_x:0;anchors_y:0}D{i:15;anchors_width:200;anchors_x:8}
-D{i:14;anchors_height:400;anchors_width:200}
+    D{i:0;formeditorZoom:0.75}D{i:1;anchors_width:150}D{i:16;anchors_height:400;anchors_width:200}
+D{i:19;anchors_x:46}D{i:20;anchors_x:44}D{i:18;anchors_height:60;anchors_x:0;anchors_y:0}
+D{i:21;anchors_x:44}D{i:17;anchors_width:200;anchors_x:8}
 }
 ##^##*/
