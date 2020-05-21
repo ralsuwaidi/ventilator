@@ -13,8 +13,6 @@ Item {
     id: root
     anchors.fill: parent
     signal alarm(string status)
-    width: 1280
-    height: 800
     signal startVentilation()
     Component.onCompleted: {
         AlarmManager.alarmStatus.connect(root.alarm)

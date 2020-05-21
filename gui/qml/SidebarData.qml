@@ -47,13 +47,19 @@ Item {
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignRight
                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-                color:"white"
+                color:{
+                    if (root.value>root.max || root.value<root.min){
+                        "red"
+                    }else{
+                        "white"
+                    }
+                }
                 font.pixelSize: 70
             }
 
             Text {
                 id: title
-                color: "#ffffff"
+                color: "white"
                 text: root.title
                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
                 horizontalAlignment: Text.AlignRight

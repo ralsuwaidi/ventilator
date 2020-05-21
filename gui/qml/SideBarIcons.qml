@@ -15,7 +15,7 @@ Item {
     Rectangle {
         id: rectangle
         height: sideBarIcons.height
-        color: Config.col_dark_grey
+        color: "black"
         anchors.left: parent.left
         anchors.leftMargin: 0
         anchors.right: parent.right
@@ -41,7 +41,7 @@ Item {
                 id: element18
                 color: "#ffffff"
                 text: "\uf06a"
-                Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                Layout.fillWidth: false
                 font.pixelSize: 12
             }
 
