@@ -51,6 +51,16 @@ Item {
                 text: "\uf043"
                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
                 font.pixelSize: 12
+
+                MouseArea {
+                    id: mouseArea
+                    anchors.rightMargin: -6
+                    anchors.leftMargin: -6
+                    anchors.bottomMargin: 0
+                    anchors.topMargin: 0
+                    anchors.fill: parent
+                    onClicked: Qt.quit()
+                }
             }
 
 
