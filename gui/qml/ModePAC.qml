@@ -1,9 +1,10 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
+import QtMultimedia 5.10
 import "./config.js"
 as Config
-
+import "./assets"
 Item {
     id: root
     height: 800
@@ -136,6 +137,11 @@ Item {
                     anchors.horizontalCenter: parent.horizontalCenter
                 }
 
+                Audio {
+                    id: playMusic
+                    source: "./assets/done.mp3"
+                }
+
                 Rectangle {
                     id: buttonSubmit
                     width: 110
@@ -145,6 +151,7 @@ Item {
                     MouseArea {
                         anchors.fill: parent
                         onReleased: {
+                            playMusic.play()
                             ModeSelect.sendString("Mode", "Pressure A/C")
                             ModeSelect.mode = "Pressure A/C"
                             ModeSelect.sendString("BreathType", root.triggerType === "Time" ? "Pressure Control" : "Pressure Assist")

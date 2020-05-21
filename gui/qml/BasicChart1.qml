@@ -85,7 +85,7 @@ Item {
                     id: axisX
                     min: 0
                     max: root.limit
-                    tickCount: 10
+                    tickCount: 11
                 }
 
             }
