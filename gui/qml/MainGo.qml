@@ -35,7 +35,7 @@ Item {
 
     Audio {
         id: playMusic
-        source: "./assets/done.mp3"
+        source: "./assets/stop.mp3"
     }
 
     Rectangle {
