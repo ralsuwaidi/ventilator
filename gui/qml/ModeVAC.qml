@@ -155,7 +155,7 @@ Item {
                             ModeSelect.mode = "Volume A/C"
                             ModeSelect.sendString("BreathType", root.triggerType === "Time" ? "Volume Control" : "Volume Assist")
                             ModeSelect.breath = root.triggerType === "Time" ? "Volume Control" : "Volume Assist"
-                            ModeSelect.sendString("PatientTriggerType", root.triggerType === "Flow" ? "Flow Trigger" : "Volume Trigger")
+                            ModeSelect.sendString("PatientTriggerType", root.triggerType === "Flow" ? "Flow Trigger" : "Pressure Trigger")
                             ModeSelect.trigger = root.triggerType
                             ModeSelect.sendInt("FiO2", fio2.value)
                             ModeSelect.sendInt("Rate", rate.value)
